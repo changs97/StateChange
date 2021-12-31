@@ -20,6 +20,9 @@ class MainActivity : AppCompatActivity() {
 
         editText = binding.editText
 
+        //이 예제를 통해 액티비티 생명주기에 대해 학습, EditText에 자동 저장 설정을 false로 하고 수동으로 저장 코드를 추가하여 화면 회전을 해도 값을 유지하도록 해보겠다.
+        //예제에 나오지 않는 기능으로, Manifest에서 android:configChanges 값을 설정하면 '변경되더라도 상태를 유지할 설정값'들을 지정할 수도 있다.
+
 
     }
 
@@ -62,7 +65,7 @@ class MainActivity : AppCompatActivity() {
     Bundle 클래스는 키-값의 쌍으로 구성되는 데이터를 저장하는 역할을 한다. 키는 문자열 값이며,
     키와 연관된 값은 기본형 데이터 값이거나 또는 안드로이드 Parcelable 인터페이스를 구현하는 어떤 객체도 될 수 있다.
     Bundle 클래스는 다양한 타입을 갖는 키-값 데이터를 읽거나 쓰는 함수를 갖고 있다.
-    여기서는 EditText 뷰의 텍트스 자동 저장을 못하게 했으므로 (android:saveEnabled="false")
+    여기서는 EditText 뷰의 텍스트 자동 저장을 못하게 했으므로 (android:saveEnabled="false")
     사용자가 EditText에 입력한 텍스트를 Bundle 객체에 저장했다가 나중에 복원해야 한다.
     */
 
