@@ -20,6 +20,8 @@ class MainActivity : AppCompatActivity() {
 
         editText = binding.editText
 
+        //
+
 
 
     }
@@ -67,6 +69,9 @@ class MainActivity : AppCompatActivity() {
     사용자가 EditText에 입력한 텍스트를 Bundle 객체에 저장했다가 나중에 복원해야 한다.
     */
 
+
+
+
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         Log.i(TAG,"onSaveInstanceState")
@@ -74,15 +79,25 @@ class MainActivity : AppCompatActivity() {
         val userText = editText.text
         outState.putCharSequence("savedText",userText) //Bundle 객체의 putCharSequence() 함수를 사용해서 텍스트 값을 Bundle 객체에 저장할 수 있다.
         /*
+        현재의 동적 상태 데이터가 저장될 수 있도록 액티비티가 소멸되기 전에 호출된다.
+        여기서 동적 상태 데이터는 UI 데이터와 관련, 저장되어야 하는 상태 데이터를 갖는 Bundle 객체가 인자로 전달되며
+        이 객체는 이후에 액티비티가 다시 시작될 때 onCreate와  onRestoreInstanceState 함수에 전달된다.
+        동적 상태 데이터가 저장될 필요가 있다고 런타임이 판단할 경우에만 이 함수가 호출된다.
         저장된 동적 상태 데이터는 액티비티 생명주기 함수에서 복원될 수 있으며 이때 함수의 인자로 Bundle 객체가 전달된다.
         그리고 onCreate와 OnRestoreInstanceState 중 어떤 함수에서 복원할 것인지 선택하면 된다. 복원할 함수의 선택은 액티비티의 특성에 달렸다.
         예를 들어, 액티비티의 초기화 작업이 모두 수행된 후에 상태를 복원하는 것이 가장 좋다면 후자가 더 적합하다.
         여기서는 저장된 상태를 Bundle 객체로 부터 추출하기 위해 onRestoreInstanceState 함수에 복원 코드를 추가할 것이다. */
     }
 
+
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
         Log.i(TAG,"onRestoreInstanceState")
+
+        /*
+        상태 정보가 저장되었던 이전 액티비티 인스턴스로부터 액티비티 인스턴스가 다시 생성되어 시작될 때
+        이전 상태를 포함하는 Bundle 객체가 인자로 전달되어 이 객체로 동적 데이터를 복원하면 된다.
+        */
 
         val userText  = savedInstanceState.getCharSequence("savedText")
         editText.setText(userText)
